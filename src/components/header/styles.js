@@ -19,6 +19,7 @@ export const Button = styled.button`
     border: none;
     background-color: white;
     cursor: pointer;
+    font-size: 1rem;
 `
 
 export const Links = styled(Link)`

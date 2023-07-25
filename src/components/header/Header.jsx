@@ -8,6 +8,7 @@ import { selectProductsCount } from '../../redux/cart/cart.selectors'
 export default function Header() {
     const [cartIsOpen, setCartIsOpen] = useState(false)
     const productsCount = useSelector(selectProductsCount)
+    const { currentUser } = useSelector(rootReducer => rootReducer.userReducer)
 
     const handleCartClick = () => {
         setCartIsOpen(true)
@@ -17,7 +18,10 @@ export default function Header() {
         <Styled.NavBar>
             <Styled.Button style={{ paddingLeft: '2rem' }}><Styled.Links to='/'>Home</Styled.Links></Styled.Button>
             <Styled.EndButtons>
-                <Styled.Button><Styled.Links to='/login'>Login</Styled.Links></Styled.Button>
+                {currentUser ?
+                    <Styled.Button>{currentUser.firstname}</Styled.Button> :
+                    <Styled.Button><Styled.Links to='/login'>Login</Styled.Links></Styled.Button>
+                }
                 <Styled.Button onClick={handleCartClick}>Cart({productsCount})</Styled.Button>
             </Styled.EndButtons>
 

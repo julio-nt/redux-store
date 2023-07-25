@@ -11,6 +11,7 @@ export const Add = styled.button`
     text-align: left;
     padding-left: .5rem;
     border-radius: 2px;
+    cursor: pointer;
     &:hover {
         background-color: #4a4a4a;
     }
