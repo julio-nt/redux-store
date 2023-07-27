@@ -1,18 +1,10 @@
-import { styled } from 'styled-components'
 import * as Styled from './styles'
 import Header from '../../components/header/Header'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { logout } from '../../redux/user/slice'
+import { logout, edit } from '../../redux/user/slice'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-
-const Container = styled.div`
-    max-width: 1240px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 4rem;
-`
 
 export default function Account() {
     const navigate = useNavigate()
@@ -20,25 +12,47 @@ export default function Account() {
     const dispatch = useDispatch()
 
     const [isEditing, setIsEditing] = useState(false)
+    const [firstname, setFirstname] = useState(currentUser.firstname)
+    const [lastname, setLastname] = useState(currentUser.lastname)
+    const [email, setEmail] = useState(currentUser.email)
+    const [address, setAddress] = useState(currentUser.address)
+    const [extraAddress, setExtraAddress] = useState(currentUser.extraAddress)
 
     const handleLogout = () => {
         dispatch(logout())
         navigate('/')
     }
 
+    const handleSave = () => {
+        dispatch(edit({ firstname: firstname, lastname: lastname, email: email, address: address, extraAddress: extraAddress }))
+        setIsEditing(false)
+        console.log(currentUser)
+    }
+
     return (
-        <Container>
+        <>
             <Header />
             <Styled.InfoContainer>
-                <Styled.Title>{`${currentUser.firstname} ${currentUser.lastname}`}</Styled.Title>
-                <p><b>Email:</b> {currentUser.email}</p>
-                <p><b>Address:</b> {currentUser.address}</p>
+                <Styled.Title>My account</Styled.Title>
+                <p><b>Name: </b> {isEditing ? <Styled.Input type='text' value={firstname} onChange={(e) => setFirstname(e.target.value)} /> : currentUser.firstname}</p>
+                <p><b>Last name: </b> {isEditing ? <Styled.Input type='text' value={lastname} onChange={(e) => setLastname(e.target.value)} /> : currentUser.lastname}</p>
+                <p><b>Email:</b> {isEditing ? <Styled.Input type='email' value={email} onChange={(e) => setEmail(e.target.value)} /> : currentUser.email}</p>
+                <p><b>Address:</b> {isEditing ? <Styled.Input type='text' value={address} onChange={(e) => setAddress(e.target.value)} /> : currentUser.address}</p>
                 {currentUser.extraAddress ?
-                    <p><b>Extra address:</b> {currentUser.extraAddress}</p>
+                    <p><b>Extra address:</b> {isEditing ?
+                        <Styled.Input type='text' value={extraAddress} onChange={(e) => setExtraAddress(e.target.value)} />
+                        : currentUser.extraAddress}</p>
                     : null
                 }
-                <Styled.Button onClick={handleLogout}>Logout</Styled.Button>
+                <Styled.ButtonContainer>
+                    {isEditing ?
+                        <Styled.Button onClick={handleSave}>Save</Styled.Button>
+                        :
+                        <Styled.Button onClick={() => setIsEditing(true)}>Edit</Styled.Button>
+                    }
+                    <Styled.Button onClick={handleLogout}>Logout</Styled.Button>
+                </Styled.ButtonContainer>
             </Styled.InfoContainer>
-        </Container>
+        </>
     )
 }

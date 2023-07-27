@@ -10,6 +10,10 @@ export const Form = styled.div`
     flex-direction: column;
     gap: 2rem;
     margin-top: 5rem;
+    @media (max-width: 450px) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 `
 
 export const Title = styled.h3`

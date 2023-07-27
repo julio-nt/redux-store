@@ -3,6 +3,7 @@ import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import SignUp from "../pages/signUp/SignUp";
 import Account from "../pages/account/Account";
+import Checkout from "../pages/checkout/Checkout";
 
 const browserRouter = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const browserRouter = createBrowserRouter([
     {
         path: '/myaccount',
         element: <Account />
+    },
+    {
+        path: '/checkout',
+        element: <Checkout />
     },
 ])
 

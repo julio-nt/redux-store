@@ -7,6 +7,10 @@ export const Container = styled.div`
     margin-left: auto;
     margin-right: auto;
     margin-top: 4rem;
+    @media (max-width: 450px) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 `
 
 export const Title = styled.h3`
@@ -19,6 +23,9 @@ export const Form = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 4rem;
+    @media (max-width: 681px) {
+        justify-content: center;
+    }
 `
 
 export const Input = styled.input`
@@ -32,8 +39,11 @@ export const Button = styled.button`
     padding: .5rem;
     border: none;
     cursor: pointer;
-    margin-left: 41%;
+    ${'' /* margin-left: 41%; */}
     margin-top: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
     &:hover {
         background-color: #4a4a4a;
     }

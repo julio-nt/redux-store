@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const CartContainer = styled.div`
   position: fixed;
@@ -46,3 +47,30 @@ export const CartTotal = styled.p`
   font-size: 1.125rem;
   margin-bottom: 15px;
 `;
+
+export const CloseButton = styled.div`
+  margin-right: 20px;
+  font-size: 2rem;
+  float: right;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const Button = styled.button`
+    text-transform: uppercase;
+    background-color: black;
+    color: white;
+    padding: .5rem;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    &:hover {
+        background-color: #4a4a4a;
+    }
+`
+
+export const Links = styled(Link)`
+  text-decoration: none;
+  color: white;
+`

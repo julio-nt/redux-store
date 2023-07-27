@@ -22,7 +22,7 @@ const CartItem = ({ product }) => {
 
     return (
         <Styles.CartItemContainer>
-            <Styles.CartItemImage imageUrl={product.imageUrl} />
+            <Styles.CartItemImage imageUrl={product.img} />
 
             <Styles.CartItemInfo>
                 <p>{product.name}</p>
