@@ -3,7 +3,7 @@ import Header from '../../components/header/Header'
 import { styled } from 'styled-components'
 
 import * as Styled from './styles'
-import { Link, redirect } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../redux/user/slice'
 
@@ -16,6 +16,7 @@ const Container = styled.div`
 
 export default function Login() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const { currentUser } = useSelector(state => state.userReducer)
 
@@ -24,8 +25,7 @@ export default function Login() {
 
     const handleLogin = () => {
         dispatch(login({ email: email, password: password }))
-
-        redirect('/')
+        navigate('/')
     }
 
     return (
