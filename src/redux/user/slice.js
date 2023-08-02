@@ -24,11 +24,24 @@ const userSlice = createSlice({
             state.currentUser = null;
         },
         edit: (state, action) => {
+            const { email, password } = state.currentUser
+            state.newUsers = state.newUsers.map(user =>
+                user.email === email ?
+                    { ...action.payload, password }
+                    : user
+            )
             state.currentUser = action.payload
         },
         register: (state, action) => {
-            state.newUsers = [...state.newUsers, { ...action.payload }]
-            return alert('Account created successfully.')
+            const { email } = action.payload
+            const userAlreadyExists = state.newUsers.find(user => user.email === email);
+            if (userAlreadyExists) {
+                return alert('A user with this email already exists.')
+            } else {
+                state.newUsers = [...state.newUsers, { ...action.payload }]
+                return alert('Account created successfully.')
+            }
+
         }
     }
 })

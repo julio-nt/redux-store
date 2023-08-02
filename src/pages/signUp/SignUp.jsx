@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Input from './components/Input'
+import Input from '../../components/input/Input'
 import Header from '../../components/header/Header'
 
 import * as Styled from './styles'

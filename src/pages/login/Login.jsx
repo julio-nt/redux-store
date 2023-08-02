@@ -5,6 +5,7 @@ import * as Styled from './styles'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/user/slice'
+import Input from '../../components/input/Input'
 
 
 export default function Login() {
@@ -25,12 +26,10 @@ export default function Login() {
             <Styled.Form>
                 <Styled.Title>Login</Styled.Title>
                 <Styled.ContainerInput>
-                    <label htmlFor='email'>Email:</label>
-                    <Styled.Input id='email' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <Input type='email' legend='Email' value={email} setValue={setEmail} />
                 </Styled.ContainerInput>
                 <Styled.ContainerInput>
-                    <label htmlFor='password'>Password:</label>
-                    <Styled.Input id='password' type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <Input type='password' legend='password' value={password} setValue={setPassword} />
                 </Styled.ContainerInput>
                 <Styled.Button onClick={handleLogin}>Login</Styled.Button>
                 <p>Don't have an account? Create one <Link to='/signup'>here</Link></p>

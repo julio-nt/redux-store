@@ -23,8 +23,7 @@ export const Title = styled.h3`
 `
 
 export const ContainerInput = styled.div`
-    display: flex;
-    flex-direction: column;
+    width: 100%
 `
 
 export const Input = styled.input`
@@ -38,6 +37,9 @@ export const Button = styled.button`
     padding: .5rem;
     border: none;
     cursor: pointer;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
     &:hover {
         background-color: #4a4a4a;
     }

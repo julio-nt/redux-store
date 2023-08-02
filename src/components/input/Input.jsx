@@ -1,5 +1,5 @@
 import React from 'react'
-import * as Styled from '../styles'
+import * as Styled from './styles'
 
 export default function Input({ legend, value, setValue, type }) {
     return (

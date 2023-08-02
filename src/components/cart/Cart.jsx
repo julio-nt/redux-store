@@ -31,7 +31,7 @@ const Cart = ({ isVisible, setIsVisible }) => {
                 {products.length > 0 ?
                     <>
                         <Styled.CartTotal>Total: R${totalPrice.toFixed(2)}</Styled.CartTotal>
-                        <Styled.Button><Styled.Links to='/checkout'>Proceed to checkout</Styled.Links></Styled.Button>
+                        <Styled.Links to='/checkout'><Styled.Button>Proceed to checkout</Styled.Button></Styled.Links>
                     </>
                     : null
                 }
