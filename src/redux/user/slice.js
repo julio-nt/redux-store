@@ -24,13 +24,13 @@ const userSlice = createSlice({
             state.currentUser = null;
         },
         edit: (state, action) => {
-            const { email, password } = state.currentUser
+            const { email, password, id } = state.currentUser
             state.newUsers = state.newUsers.map(user =>
                 user.email === email ?
-                    { ...action.payload, password }
+                    { ...action.payload, password, id }
                     : user
             )
-            state.currentUser = action.payload
+            state.currentUser = { ...action.payload, password, id }
         },
         register: (state, action) => {
             const { email } = action.payload

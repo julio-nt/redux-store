@@ -16,11 +16,13 @@ export default function SignUp() {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [id, setId] = useState('')
+    const [phone, setPhone] = useState('')
+    const [country, setCountry] = useState('')
+    const [state, setState] = useState('')
+    const [city, setCity] = useState('')
     const [address, setAddress] = useState('')
     const [extraAddress, setExtraAddress] = useState('')
-    // const [country, setCountry] = useState('')
-    // const [state, setState] = useState('')
-    // const [city, setCity] = useState('')
 
     const handleRegister = () => {
         if (firstName === '') {
@@ -28,6 +30,9 @@ export default function SignUp() {
         }
         else if (lastName === '') {
             alert(`Last name can't be empty.`)
+        }
+        else if (id === '') {
+            alert(`ID can't be empty.`)
         }
         else if (email === '') {
             alert(`Email name can't be empty.`)
@@ -39,10 +44,15 @@ export default function SignUp() {
             dispatch(register({
                 firstname: firstName,
                 lastname: lastName,
+                id: id,
                 email: email,
                 password: password,
                 address: address,
-                extraAddress: extraAddress
+                extraAddress: extraAddress,
+                phone: phone,
+                country: country,
+                state: state,
+                city: city,
             }))
             navigate('/login')
         }
@@ -55,12 +65,17 @@ export default function SignUp() {
                 <Styled.Title>Sign Up</Styled.Title>
                 <Styled.Form>
                     <div>
-                        <Input type='text' legend='Name' value={firstName} setValue={setFirstName} />
-                        <Input type='text' legend='Lastname' value={lastName} setValue={setLastName} />
-                        <Input type='email' legend='Email' value={email} setValue={setEmail} />
-                        <Input type='password' legend='password' value={password} setValue={setPassword} />
+                        <Input type='text' legend='Name' value={firstName} setValue={setFirstName} required />
+                        <Input type='text' legend='Lastname' value={lastName} setValue={setLastName} required />
+                        <Input type='text' legend='ID' value={id} setValue={setId} required />
+                        <Input type='text' legend='Phone' value={phone} setValue={setPhone} />
+                        <Input type='email' legend='Email' value={email} setValue={setEmail} required />
+                        <Input type='password' legend='password' value={password} setValue={setPassword} required />
                     </div>
                     <div>
+                        <Input type='text' legend='Country' value={country} setValue={setCountry} />
+                        <Input type='text' legend='State' value={state} setValue={setState} />
+                        <Input type='text' legend='City' value={city} setValue={setCity} />
                         <Input type='text' legend='Address' value={address} setValue={setAddress} />
                         <Input type='text' legend='Apt, Block, etc' value={extraAddress} setValue={setExtraAddress} />
                     </div>

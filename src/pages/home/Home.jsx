@@ -5,10 +5,11 @@ import { useSelector } from 'react-redux'
 
 export default function Home() {
 
-    const { newUsers } = useSelector(state => state.userReducer)
+    const { newUsers, currentUser } = useSelector(state => state.userReducer)
 
     useEffect(() => {
-        console.log(newUsers)
+        console.log('User List ', newUsers)
+        console.log('User ', currentUser)
     })
 
     return (

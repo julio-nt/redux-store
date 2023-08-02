@@ -17,6 +17,10 @@ export default function Account() {
     const [email, setEmail] = useState(currentUser.email)
     const [address, setAddress] = useState(currentUser.address)
     const [extraAddress, setExtraAddress] = useState(currentUser.extraAddress)
+    const [phone, setPhone] = useState(currentUser.phone)
+    const [country, setCountry] = useState(currentUser.country)
+    const [state, setState] = useState(currentUser.state)
+    const [city, setCity] = useState(currentUser.city)
 
     const handleLogout = () => {
         dispatch(logout())
@@ -24,7 +28,17 @@ export default function Account() {
     }
 
     const handleSave = () => {
-        dispatch(edit({ firstname: firstname, lastname: lastname, email: email, address: address, extraAddress: extraAddress }))
+        dispatch(edit({
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            address: address,
+            extraAddress: extraAddress,
+            phone: phone,
+            country: country,
+            state: state,
+            city: city,
+        }))
         setIsEditing(false)
         console.log(currentUser)
     }
@@ -37,8 +51,12 @@ export default function Account() {
                 <p><b>Name: </b> {isEditing ? <Styled.Input type='text' value={firstname} onChange={(e) => setFirstname(e.target.value)} /> : currentUser.firstname}</p>
                 <p><b>Last name: </b> {isEditing ? <Styled.Input type='text' value={lastname} onChange={(e) => setLastname(e.target.value)} /> : currentUser.lastname}</p>
                 <p><b>Email:</b> {isEditing ? <Styled.Input type='email' value={email} onChange={(e) => setEmail(e.target.value)} /> : currentUser.email}</p>
+                <p><b>Phone:</b> {isEditing ? <Styled.Input type='text' value={phone} onChange={(e) => setPhone(e.target.value)} /> : currentUser.phone}</p>
+                <p><b>Country:</b> {isEditing ? <Styled.Input type='text' value={country} onChange={(e) => setCountry(e.target.value)} /> : currentUser.country}</p>
+                <p><b>State:</b> {isEditing ? <Styled.Input type='text' value={state} onChange={(e) => setState(e.target.value)} /> : currentUser.state}</p>
+                <p><b>City:</b> {isEditing ? <Styled.Input type='text' value={city} onChange={(e) => setCity(e.target.value)} /> : currentUser.city}</p>
                 <p><b>Address:</b> {isEditing ? <Styled.Input type='text' value={address} onChange={(e) => setAddress(e.target.value)} /> : currentUser.address}</p>
-                <p><b>Extra address:</b> {isEditing ?
+                <p><b>Address line 2:</b> {isEditing ?
                     <Styled.Input type='text' value={extraAddress} onChange={(e) => setExtraAddress(e.target.value)} />
                     : currentUser.extraAddress}</p>
                 <Styled.ButtonContainer>

@@ -1,34 +1,23 @@
 import { styled } from "styled-components";
 
-export const HeadingRow = styled.tr`
-    background-color: black;
-    color: white;
+export const Container = styled.div`
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 2rem;
+    column-gap: 6rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 `
 
-export const Image = styled.th`
-    width: 5rem;
-    padding: 1rem;
-`
-
-export const Header = styled.th`
-    width: 10rem;
-    padding: 1rem;
-`
-
-export const Trash = styled.th`
-    width: 2rem;
-    padding: 1rem;
-`
-
-export const Total = styled.p`
-    margin-left: 77%;
+export const Title = styled.h3`
     background-color: black;
     color: white;
-    text-transform: uppercase;
-    width: fit-content;
     padding: 1rem;
-    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+`
+
+export const Input = styled.div`
+    width: 16rem;
+    padding-top: 1rem;
 `

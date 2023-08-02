@@ -11,7 +11,8 @@ import { selectProductsTotalPrice } from '../../redux/cart/cart.selectors';
 const Cart = ({ isVisible, setIsVisible }) => {
     const handleEscapeAreaClick = () => setIsVisible(false);
 
-    const { products } = useSelector(rootReducer => rootReducer.cartReducer)
+    const { products } = useSelector(state => state.cartReducer)
+    const { currentUser } = useSelector(state => state.userReducer)
 
     const totalPrice = useSelector(selectProductsTotalPrice)
 
@@ -24,14 +25,14 @@ const Cart = ({ isVisible, setIsVisible }) => {
                     aria-label={`Close cart`}>
                     <AiOutlineClose />
                 </Styled.CloseButton>
-                <Styled.CartTitle>Seu Carrinho</Styled.CartTitle>
+                <Styled.CartTitle>Your cart</Styled.CartTitle>
                 {products.map((product, i) => {
                     return <CartItem product={product} key={i} />
                 })}
                 {products.length > 0 ?
                     <>
                         <Styled.CartTotal>Total: R${totalPrice.toFixed(2)}</Styled.CartTotal>
-                        <Styled.Links to='/checkout'><Styled.Button>Proceed to checkout</Styled.Button></Styled.Links>
+                        <Styled.Links to={currentUser !== null ? '/checkout' : '/login'}><Styled.Button>Proceed to checkout</Styled.Button></Styled.Links>
                     </>
                     : null
                 }
