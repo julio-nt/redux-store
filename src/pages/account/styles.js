@@ -1,26 +1,37 @@
 import { styled } from 'styled-components'
 
-export const InfoContainer = styled.div`
+export const Container = styled.div`
     border: 2px solid gray;
     padding: 2rem 4rem;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
     margin-top: 5rem;
 `
 
 export const Title = styled.h3`
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     text-transform: uppercase;
+`
+
+export const Info = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+`
+
+export const InfoColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 `
 
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-around;
+    margin-top: 2rem;
 `
 
 export const Button = styled.button`
@@ -38,4 +49,8 @@ export const Button = styled.button`
 
 export const Input = styled.input`
     padding: .5rem;
+`
+
+export const Required = styled.span`
+    color: red;
 `

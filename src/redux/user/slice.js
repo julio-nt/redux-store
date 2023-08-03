@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { users } from '../../data/users'
 
 const initialState = {
     currentUser: null,
@@ -41,11 +40,19 @@ const userSlice = createSlice({
                 state.newUsers = [...state.newUsers, { ...action.payload }]
                 return alert('Account created successfully.')
             }
-
+        },
+        registerNewCard: (state, action) => {
+            const { email } = state.currentUser
+            state.newUsers = state.newUsers.map(user =>
+                user.email === email ?
+                    { ...action.payload, ...state.currentUser, ...action.payload }
+                    : user
+            )
+            state.currentUser = { ...state.currentUser, ...action.payload }
         }
     }
 })
 
-export const { login, logout, edit, register } = userSlice.actions
+export const { login, logout, edit, register, registerNewCard } = userSlice.actions
 
 export default userSlice.reducer

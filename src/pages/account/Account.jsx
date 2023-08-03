@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logout, edit } from '../../redux/user/slice'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import PaymentMethod from './components/payment-method/PaymentMethod'
 
 export default function Account() {
     const navigate = useNavigate()
@@ -12,6 +13,7 @@ export default function Account() {
     const dispatch = useDispatch()
 
     const [isEditing, setIsEditing] = useState(false)
+
     const [firstname, setFirstname] = useState(currentUser.firstname)
     const [lastname, setLastname] = useState(currentUser.lastname)
     const [email, setEmail] = useState(currentUser.email)
@@ -28,37 +30,76 @@ export default function Account() {
     }
 
     const handleSave = () => {
-        dispatch(edit({
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
-            address: address,
-            extraAddress: extraAddress,
-            phone: phone,
-            country: country,
-            state: state,
-            city: city,
-        }))
-        setIsEditing(false)
-        console.log(currentUser)
+        if (firstname === '') {
+            alert(`Name can't be empty.`)
+        } else if (lastname === '') {
+            alert(`Last name can't be empty.`)
+        } else if (email === '') {
+            alert(`Email can't be empty.`)
+        } else {
+            dispatch(edit({
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                address: address,
+                extraAddress: extraAddress,
+                phone: phone,
+                country: country,
+                state: state,
+                city: city,
+            }))
+            setIsEditing(false)
+            console.log(currentUser)
+        }
     }
 
     return (
         <>
             <Header />
-            <Styled.InfoContainer>
+            <Styled.Container>
                 <Styled.Title>My account</Styled.Title>
-                <p><b>Name: </b> {isEditing ? <Styled.Input type='text' value={firstname} onChange={(e) => setFirstname(e.target.value)} /> : currentUser.firstname}</p>
-                <p><b>Last name: </b> {isEditing ? <Styled.Input type='text' value={lastname} onChange={(e) => setLastname(e.target.value)} /> : currentUser.lastname}</p>
-                <p><b>Email:</b> {isEditing ? <Styled.Input type='email' value={email} onChange={(e) => setEmail(e.target.value)} /> : currentUser.email}</p>
-                <p><b>Phone:</b> {isEditing ? <Styled.Input type='text' value={phone} onChange={(e) => setPhone(e.target.value)} /> : currentUser.phone}</p>
-                <p><b>Country:</b> {isEditing ? <Styled.Input type='text' value={country} onChange={(e) => setCountry(e.target.value)} /> : currentUser.country}</p>
-                <p><b>State:</b> {isEditing ? <Styled.Input type='text' value={state} onChange={(e) => setState(e.target.value)} /> : currentUser.state}</p>
-                <p><b>City:</b> {isEditing ? <Styled.Input type='text' value={city} onChange={(e) => setCity(e.target.value)} /> : currentUser.city}</p>
-                <p><b>Address:</b> {isEditing ? <Styled.Input type='text' value={address} onChange={(e) => setAddress(e.target.value)} /> : currentUser.address}</p>
-                <p><b>Address line 2:</b> {isEditing ?
-                    <Styled.Input type='text' value={extraAddress} onChange={(e) => setExtraAddress(e.target.value)} />
-                    : currentUser.extraAddress}</p>
+                <Styled.Info>
+                    <Styled.InfoColumn>
+                        <div>
+                            <b>Name <Styled.Required>*</Styled.Required></b>
+                            <p><Styled.Input disabled={isEditing ? false : true} type='text' value={firstname} onChange={(e) => setFirstname(e.target.value)} /></p>
+                        </div>
+                        <div>
+                            <b>Last name <Styled.Required>*</Styled.Required></b>
+                            <p><Styled.Input disabled={isEditing ? false : true} type='text' value={lastname} onChange={(e) => setLastname(e.target.value)} /></p>
+                        </div>
+                        <div>
+                            <b>Email <Styled.Required>*</Styled.Required></b>
+                            <p><Styled.Input disabled={isEditing ? false : true} type='email' value={email} onChange={(e) => setEmail(e.target.value)} /></p>
+                        </div>
+                        <div>
+                            <b>Phone</b>
+                            <p><Styled.Input disabled={isEditing ? false : true} type='text' value={phone} onChange={(e) => setPhone(e.target.value)} /></p>
+                        </div>
+                    </Styled.InfoColumn>
+                    <Styled.InfoColumn>
+                        <div>
+                            <b>Country</b>
+                            <p><Styled.Input disabled={isEditing ? false : true} type='text' value={country} onChange={(e) => setCountry(e.target.value)} /></p>
+                        </div>
+                        <div>
+                            <b>State</b>
+                            <p><Styled.Input disabled={isEditing ? false : true} type='text' value={state} onChange={(e) => setState(e.target.value)} /></p>
+                        </div>
+                        <div>
+                            <b>City</b>
+                            <p><Styled.Input disabled={isEditing ? false : true} type='text' value={city} onChange={(e) => setCity(e.target.value)} /></p>
+                        </div>
+                        <div>
+                            <b>Address</b>
+                            <p><Styled.Input disabled={isEditing ? false : true} type='text' value={address} onChange={(e) => setAddress(e.target.value)} /></p>
+                        </div>
+                        <div>
+                            <b>Address line 2</b>
+                            <p><Styled.Input disabled={isEditing ? false : true} type='text' value={extraAddress} onChange={(e) => setExtraAddress(e.target.value)} /></p>
+                        </div>
+                    </Styled.InfoColumn>
+                </Styled.Info>
                 <Styled.ButtonContainer>
                     {isEditing ?
                         <Styled.Button onClick={handleSave}>Save</Styled.Button>
@@ -67,7 +108,9 @@ export default function Account() {
                     }
                     <Styled.Button onClick={handleLogout}>Logout</Styled.Button>
                 </Styled.ButtonContainer>
-            </Styled.InfoContainer>
+            </Styled.Container>
+            {/* PAYMENT */}
+            <PaymentMethod />
         </>
     )
 }
