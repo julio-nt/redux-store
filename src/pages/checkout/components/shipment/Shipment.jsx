@@ -37,32 +37,32 @@ export default function Shipment() {
             <PageStyles.Container>
                 <div>
                     <PageStyles.Input>
-                        <Input type='text' legend='Full name' value={name} setValue={setName} />
+                        <Input type='text' legend='Full name' value={name} setValue={setName} required />
                     </PageStyles.Input>
                     <PageStyles.Input>
-                        <Input type='email' legend='Email' value={email} setValue={setEmail} />
+                        <Input type='email' legend='Email' value={email} setValue={setEmail} required />
                     </PageStyles.Input>
                     <PageStyles.Input>
-                        <Input type='text' legend='Id' value={id} setValue={setId} />
-                    </PageStyles.Input>
-                </div>
-                <div>
-                    <PageStyles.Input>
-                        <Input type='text' legend='Phone number' value={phone} setValue={setPhone} />
-                    </PageStyles.Input>
-                    <PageStyles.Input>
-                        <Input type='text' legend='Country' value={country} setValue={setCountry} />
-                    </PageStyles.Input>
-                    <PageStyles.Input>
-                        <Input type='text' legend='State' value={state} setValue={setState} />
+                        <Input type='text' legend='Id' value={id} setValue={setId} required />
                     </PageStyles.Input>
                 </div>
                 <div>
                     <PageStyles.Input>
-                        <Input type='text' legend='City' value={city} setValue={setCity} />
+                        <Input type='text' legend='Phone number' value={phone} setValue={setPhone} required />
                     </PageStyles.Input>
                     <PageStyles.Input>
-                        <Input type='text' legend='Address' value={address} setValue={setAddress} />
+                        <Input type='text' legend='Country' value={country} setValue={setCountry} required />
+                    </PageStyles.Input>
+                    <PageStyles.Input>
+                        <Input type='text' legend='State' value={state} setValue={setState} required />
+                    </PageStyles.Input>
+                </div>
+                <div>
+                    <PageStyles.Input>
+                        <Input type='text' legend='City' value={city} setValue={setCity} required />
+                    </PageStyles.Input>
+                    <PageStyles.Input>
+                        <Input type='text' legend='Address' value={address} setValue={setAddress} required />
                     </PageStyles.Input>
                     <PageStyles.Input>
                         <Input type='text' legend='Apt, block, etc' value={extraAddress} setValue={setExtraAddress} />

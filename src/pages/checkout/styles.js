@@ -21,3 +21,7 @@ export const Input = styled.div`
     width: 16rem;
     padding-top: 1rem;
 `
+
+export const Required = styled.span`
+    color: red;
+`

@@ -57,20 +57,20 @@ export default function Payment() {
             <PageStyles.Container>
                 <div>
                     <PageStyles.Input>
-                        <p>Card number</p>
+                        <p>Card number <PageStyles.Required>*</PageStyles.Required></p>
                         <Styled.Input type='text' value={cardNumber} onChange={handleCardNumber} placeholder='0000 0000 0000 0000' />
                     </PageStyles.Input>
                     <PageStyles.Input>
-                        <Input type='text' legend={`Cardholder's name`} value={cardHolder} setValue={setCardHolder} />
+                        <Input type='text' legend={`Cardholder's name`} value={cardHolder} setValue={setCardHolder} required />
                     </PageStyles.Input>
                 </div>
                 <div>
                     <PageStyles.Input>
-                        <p>Expire date</p>
+                        <p>Expire date  <PageStyles.Required>*</PageStyles.Required></p>
                         <Styled.Input type='text' value={expire} onChange={handleExpire} placeholder='MM/YY' />
                     </PageStyles.Input>
                     <PageStyles.Input>
-                        <p>Cvv</p>
+                        <p>Cvv  <PageStyles.Required>*</PageStyles.Required></p>
                         <Styled.Input type='text' value={cvv} onChange={handleCvv} placeholder='000' />
                     </PageStyles.Input>
                 </div>
