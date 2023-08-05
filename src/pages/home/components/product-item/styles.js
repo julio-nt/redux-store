@@ -1,9 +1,8 @@
 import { styled } from "styled-components";
 
 export const Add = styled.button`
-    width: 45px;
     height: 40px;
-    transition: width 1s;
+    width: 50%;
     background-color: black;
     color: white;
     border: black;
@@ -12,27 +11,35 @@ export const Add = styled.button`
     padding-left: .5rem;
     border-radius: 2px;
     cursor: pointer;
+    @media (min-width: 768px){
+        width: 45px;
+        transition: width 1s;
+    };
     &:hover {
         background-color: #4a4a4a;
-    }
+    };
 `
 
 export const Span = styled.span`
-    position: absolute;
-    opacity: 0;
-    transition: ease-in opacity .2s;
-    margin-left: .2rem;
+    @media (min-width: 768px){
+        position: absolute;
+        opacity: 0;
+        transition: ease-in opacity .2s;
+        margin-left: .2rem;
+    }
 `
 
 export const ValuesContainer = styled.div`
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(130%);
-    transition: opacity 1s, visibility 1s, transform 1s;
     display: flex;
     justify-content: center;
     gap: 2rem;
     padding-top: .5rem;
+    @media (min-width: 768px) {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(130%);
+        transition: opacity 1s, visibility 1s, transform 1s;
+    }
 `
 
 export const Container = styled.div`
@@ -40,7 +47,9 @@ export const Container = styled.div`
     flex-direction: column;
     gap: 1rem;
     height: 600px;
-    &:hover ${ValuesContainer} {
+    margin-bottom: 1rem;
+    @media (min-width: 768px){
+        &:hover ${ValuesContainer} {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
@@ -54,6 +63,8 @@ export const Container = styled.div`
         transition: .2s;
         transition-delay: 1s;
     }
+    };
+    
 `
 
 export const Thumbnail = styled.img`

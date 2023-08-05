@@ -74,17 +74,17 @@ export default function Payment() {
                         <Styled.Input type='text' value={cvv} onChange={handleCvv} placeholder='000' />
                     </PageStyles.Input>
                 </div>
-                <div>
-                    <Styled.Card>
+                <Styled.Card>
+                    <Styled.CardFront>
                         <Styled.CardNumber>{cardNumber.length === 0 ? '0000 0000 0000 0000' : cardNumber}</Styled.CardNumber>
                         <Styled.CardHolder>{cardHolder.length === 0 ? `Cardholder's name` : cardHolder}</Styled.CardHolder>
                         <Styled.Expire>{expire.length === 0 ? '00/00' : expire}</Styled.Expire>
-                    </Styled.Card>
+                    </Styled.CardFront>
                     <Styled.CardBack>
                         <Styled.BlackLine></Styled.BlackLine>
                         <Styled.Cvv>{cvv.length === 0 ? '000' : cvv}</Styled.Cvv>
                     </Styled.CardBack>
-                </div>
+                </Styled.Card>
             </PageStyles.Container>
         </>
     )

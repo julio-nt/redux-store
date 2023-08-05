@@ -10,7 +10,7 @@ export default function ProductsList() {
     const totalPrice = useSelector(selectProductsTotalPrice)
 
     return (
-        <>
+        <Styled.Container>
             <table style={{ width: '100%' }}>
                 <Styled.HeadingRow>
                     <Styled.Image>&nbsp;</Styled.Image>
@@ -29,6 +29,6 @@ export default function ProductsList() {
             <div>
                 <Styled.Total>Total: ${totalPrice.toFixed(2)}</Styled.Total>
             </div>
-        </>
+        </Styled.Container>
     )
 }

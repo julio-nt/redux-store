@@ -1,13 +1,25 @@
 import { styled } from "styled-components";
 
 export const Card = styled.div`
+    @media (max-width: 1135px) {
+        margin-left: 4rem;
+        margin-top: 2rem;
+    };
+    @media (max-width: 445px){
+        margin-left: -1.5rem;
+    }
+`
+
+export const CardFront = styled.div`
     width: 300px;
     height: 150px;
     background-color: orange;
     border-radius: 10px;
     position: relative;
-    right: 4rem;
-    border: 2px solid black
+    border: 2px solid black;
+    @media (min-width: 445px) {
+        right: 4rem;
+    }
 `
 
 export const CardBack = styled.div`
@@ -18,6 +30,7 @@ export const CardBack = styled.div`
     position: relative;
     margin-top: 1rem;
     border: 2px solid black
+    
 `
 
 export const CardNumber = styled.p`

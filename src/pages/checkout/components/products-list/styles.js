@@ -1,5 +1,9 @@
 import { styled } from "styled-components";
 
+export const Container = styled.div`
+    overflow-x: auto;
+`
+
 export const HeadingRow = styled.tr`
     background-color: black;
     color: white;
@@ -24,11 +28,13 @@ export const Trash = styled.th`
 `
 
 export const Total = styled.p`
-    margin-left: 76.5%;
     background-color: black;
     color: white;
     text-transform: uppercase;
     width: fit-content;
     padding: 1rem;
     font-weight: 600;
+    @media (min-width: 1013px){
+    margin-left: 76.5%;
+    }
 `
