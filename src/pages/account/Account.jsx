@@ -40,7 +40,7 @@ export default function Account() {
             dispatch(edit({
                 firstname: firstname,
                 lastname: lastname,
-                email: email,
+                email: email.toLowerCase(),
                 address: address,
                 extraAddress: extraAddress,
                 phone: phone,

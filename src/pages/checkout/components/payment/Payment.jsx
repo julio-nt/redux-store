@@ -1,13 +1,7 @@
-import { useState } from 'react'
-import Input from '../../../../components/input/Input'
 import * as PageStyles from '../../styles'
 import * as Styled from './styles'
 
-export default function Payment() {
-    const [cardNumber, setCardNumber] = useState('')
-    const [cardHolder, setCardHolder] = useState('')
-    const [expire, setExpire] = useState('')
-    const [cvv, setCvv] = useState('')
+export default function Payment(props) {
 
     const handleExpire = (e) => {
         const input = e.target.value;
@@ -21,7 +15,7 @@ export default function Payment() {
                 .replace(/^(\d{1,2})/, '$1/')
                 .replace(/^(\d{2})\/(\d{1,2})/, '$1/$2');
 
-            setExpire(formatted);
+            props.setExpire(formatted);
         }
     }
 
@@ -31,7 +25,7 @@ export default function Payment() {
         const cleanCvv = input.replace(/\D/g, '');
 
         if (input.length <= 3) {
-            setCvv(cleanCvv);
+            props.setCvv(cleanCvv);
         }
     }
 
@@ -47,7 +41,7 @@ export default function Payment() {
                 .replace(/^(\d{4})\s(\d{4})/, '$1 $2 ')
                 .replace(/^(\d{4})\s(\d{4})\s(\d{4})/, '$1 $2 $3 ');
 
-            setCardNumber(formatted);
+            props.setCardNumber(formatted);
         }
     }
 
@@ -58,31 +52,32 @@ export default function Payment() {
                 <div>
                     <PageStyles.Input>
                         <p>Card number <PageStyles.Required>*</PageStyles.Required></p>
-                        <Styled.Input type='text' value={cardNumber} onChange={handleCardNumber} placeholder='0000 0000 0000 0000' />
+                        <Styled.Input type='text' value={props.cardNumber} onChange={handleCardNumber} placeholder='0000 0000 0000 0000' />
                     </PageStyles.Input>
                     <PageStyles.Input>
-                        <Input type='text' legend={`Cardholder's name`} value={cardHolder} setValue={setCardHolder} required />
+                        <p>Cardholder's name <PageStyles.Required>*</PageStyles.Required></p>
+                        <Styled.Input type='text' value={props.cardHolder} setValue={props.setCardHolder} onChange={(e) => props.setCardHolder(e.target.value)} />
                     </PageStyles.Input>
                 </div>
                 <div>
                     <PageStyles.Input>
                         <p>Expire date  <PageStyles.Required>*</PageStyles.Required></p>
-                        <Styled.Input type='text' value={expire} onChange={handleExpire} placeholder='MM/YY' />
+                        <Styled.Input type='text' value={props.expire} onChange={handleExpire} placeholder='MM/YY' />
                     </PageStyles.Input>
                     <PageStyles.Input>
                         <p>Cvv  <PageStyles.Required>*</PageStyles.Required></p>
-                        <Styled.Input type='text' value={cvv} onChange={handleCvv} placeholder='000' />
+                        <Styled.Input type='text' value={props.cvv} onChange={handleCvv} placeholder='000' />
                     </PageStyles.Input>
                 </div>
                 <Styled.Card>
                     <Styled.CardFront>
-                        <Styled.CardNumber>{cardNumber.length === 0 ? '0000 0000 0000 0000' : cardNumber}</Styled.CardNumber>
-                        <Styled.CardHolder>{cardHolder.length === 0 ? `Cardholder's name` : cardHolder}</Styled.CardHolder>
-                        <Styled.Expire>{expire.length === 0 ? '00/00' : expire}</Styled.Expire>
+                        <Styled.CardNumber>{props.cardNumber.length === 0 ? '0000 0000 0000 0000' : props.cardNumber}</Styled.CardNumber>
+                        <Styled.CardHolder>{props.cardHolder.length === 0 ? `Cardholder's name` : props.cardHolder}</Styled.CardHolder>
+                        <Styled.Expire>{props.expire.length === 0 ? '00/00' : props.expire}</Styled.Expire>
                     </Styled.CardFront>
                     <Styled.CardBack>
                         <Styled.BlackLine></Styled.BlackLine>
-                        <Styled.Cvv>{cvv.length === 0 ? '000' : cvv}</Styled.Cvv>
+                        <Styled.Cvv>{props.cvv.length === 0 ? '000' : props.cvv}</Styled.Cvv>
                     </Styled.CardBack>
                 </Styled.Card>
             </PageStyles.Container>

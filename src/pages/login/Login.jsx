@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/header/Header'
 
 import * as Styled from './styles'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../redux/user/slice'
 import Input from '../../components/input/Input'
 
@@ -12,12 +12,23 @@ export default function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const { currentUser } = useSelector(state => state.userReducer)
+
+    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleLogin = async () => {
-        dispatch(login({ email: email, password: password }))
-        navigate('/')
+    useEffect(() => {
+        if (loading === false && currentUser) {
+            navigate('/')
+        }
+    }, [loading, currentUser, navigate])
+
+
+    const handleLogin = () => {
+        setLoading(true)
+        dispatch(login({ email: email.toLowerCase(), password: password }))
+        setLoading(false)
     }
 
     return (
