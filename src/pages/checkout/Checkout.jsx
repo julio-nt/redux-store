@@ -3,8 +3,15 @@ import Header from '../../components/header/Header'
 import Payment from './components/payment/Payment'
 import ProductsList from './components/products-list/ProductsList'
 import Shipment from './components/shipment/Shipment'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { addOrder } from '../../redux/user/slice'
+import { selectProductsTotalPrice } from '../../redux/cart/cart.selectors'
 
 export default function Checkout() {
+
+    const dispatch = useDispatch()
+    const { products } = useSelector(state => state.cartReducer)
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -20,6 +27,35 @@ export default function Checkout() {
     const [cardHolder, setCardHolder] = useState('')
     const [expire, setExpire] = useState('')
     const [cvv, setCvv] = useState('')
+
+    const totalPrice = useSelector(selectProductsTotalPrice)
+
+
+    const handleSubmit = () => {
+        dispatch(addOrder({
+            products: {
+                products,
+                total: totalPrice.toFixed(2)
+            },
+            shipment: {
+                name: name,
+                id: id,
+                phone: phone,
+                country: country,
+                state: state,
+                city: city,
+                address: address,
+                extraAddress: extraAddress
+            },
+            payment: {
+                cardNumber: cardNumber,
+                cardHolder: cardHolder,
+                expire: expire,
+                cvv: cvv,
+            }
+
+        }))
+    }
 
     return (
         <>
@@ -46,6 +82,7 @@ export default function Checkout() {
                 cvv={cvv}
                 setCvv={setCvv}
             />
+            <button onClick={handleSubmit}>Submit</button>
         </>
     )
 }

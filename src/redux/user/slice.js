@@ -38,22 +38,27 @@ const userSlice = createSlice({
             if (userAlreadyExists) {
                 return alert('A user with this email already exists.')
             } else {
-                state.newUsers = [...state.newUsers, { ...action.payload }]
+                state.newUsers = [...state.newUsers, { ...action.payload, }]
                 return alert('Account created successfully.')
             }
         },
         registerNewCard: (state, action) => {
+            // const { email } = state.currentUser
+            // state.newUsers = state.newUsers.map(user =>
+            //     user.email === email ?
+            //         { ...action.payload, ...state.currentUser, ...action.payload }
+            //         : user
+            // )
+            // state.currentUser = { ...state.currentUser, ...action.payload }
+        },
+        addOrder: (state, action) => {
+            const purchaseDate = new Date()
             const { email } = state.currentUser
-            state.newUsers = state.newUsers.map(user =>
-                user.email === email ?
-                    { ...action.payload, ...state.currentUser, ...action.payload }
-                    : user
-            )
-            state.currentUser = { ...state.currentUser, ...action.payload }
+            state.orders = [...state.orders, { email, purchaseDate, ...action.payload }]
         }
     }
 })
 
-export const { login, logout, edit, register, registerNewCard } = userSlice.actions
+export const { login, logout, edit, register, registerNewCard, addOrder } = userSlice.actions
 
 export default userSlice.reducer
