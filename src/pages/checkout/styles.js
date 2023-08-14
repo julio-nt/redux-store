@@ -25,3 +25,18 @@ export const Input = styled.div`
 export const Required = styled.span`
     color: red;
 `
+
+export const Button = styled.button`
+    text-transform: uppercase;
+    background-color: black;
+    color: white;
+    padding: .5rem;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+    &:hover {
+        background-color: #4a4a4a;
+    }
+    margin-left: 2rem;
+    margin-top: 2rem;
+`
