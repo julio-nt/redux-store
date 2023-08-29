@@ -53,6 +53,7 @@ export default function SignUp() {
                 country: country,
                 state: state,
                 city: city,
+                cards: []
             }))
             navigate('/login')
         }

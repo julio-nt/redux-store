@@ -43,13 +43,18 @@ const userSlice = createSlice({
             }
         },
         registerNewCard: (state, action) => {
-            // const { email } = state.currentUser
+            const { email } = state.currentUser
+            state.currentUser = { ...state.currentUser, cards: [...state.currentUser.cards, action.payload] }
             // state.newUsers = state.newUsers.map(user =>
             //     user.email === email ?
             //         { ...action.payload, ...state.currentUser, ...action.payload }
             //         : user
             // )
             // state.currentUser = { ...state.currentUser, ...action.payload }
+        },
+        removeCard: (state, action) => {
+            const newCardList = state.currentUser.cards.filter(card => card.cardNumber !== action.payload)
+            state.currentUser = { ...state.currentUser, cards: newCardList }
         },
         addOrder: (state, action) => {
             const purchaseDate = new Date()
@@ -59,6 +64,6 @@ const userSlice = createSlice({
     }
 })
 
-export const { login, logout, edit, register, registerNewCard, addOrder } = userSlice.actions
+export const { login, logout, edit, register, registerNewCard, removeCard, addOrder } = userSlice.actions
 
 export default userSlice.reducer

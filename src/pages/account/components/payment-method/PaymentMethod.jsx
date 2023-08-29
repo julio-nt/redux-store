@@ -1,9 +1,14 @@
 import { useState } from 'react'
-import * as Styled from '../../styles'
-import { useSelector } from 'react-redux'
+import * as PageStyles from '../../styles'
+import * as Styled from './styles'
+import { useDispatch, useSelector } from 'react-redux'
+import { registerNewCard, removeCard } from '../../../../redux/user/slice'
+import { GoTrash } from "react-icons/go";
+import CardInfo from './CardInfo'
 
 export default function PaymentMethod() {
     const { currentUser } = useSelector(state => state.userReducer)
+    const dispatch = useDispatch()
 
     const [isCreatingCard, setIsCreatingCard] = useState(false)
 
@@ -18,60 +23,72 @@ export default function PaymentMethod() {
     }
 
     const handleSaveCard = () => {
+        if (currentUser.cards.length === 3) {
+            alert(`You already have reached the limit for cards registered (3)`)
+        } else {
+            dispatch(registerNewCard({
+                cardName: cardName,
+                cardNumber: cardNumber,
+                cardHolder: cardHolder,
+                cardExpires: cardExpires,
+                cardCvv: cardCvv
+            }))
+        }
         setIsCreatingCard(false)
     }
 
     return (
-        <Styled.Container>
-            <Styled.Title>Payment methods</Styled.Title>
-            {currentUser.card ?
-                <p>Card on</p>
-                :
-                <p>No cards</p>
-            }
+        <PageStyles.Container>
+            <PageStyles.Title>Payment methods</PageStyles.Title>
+            <p>Cards saved: {currentUser.cards.length}/3</p>
+            {currentUser.cards.map(card => {
+                return (
+                    <CardInfo card={card} />
+                )
+            })}
             {isCreatingCard ?
-                <Styled.Info>
-                    <Styled.InfoColumn>
+                <PageStyles.Info>
+                    <PageStyles.InfoColumn>
                         <div>
-                            <b>Card name <Styled.Required>*</Styled.Required></b>
-                            <p><Styled.Input type='text' value={cardName} onChange={(e) => setCardName(e.target.value)} /></p>
+                            <b>Card name <PageStyles.Required>*</PageStyles.Required></b>
+                            <p><PageStyles.Input type='text' value={cardName} onChange={(e) => setCardName(e.target.value)} /></p>
                         </div>
                         <div>
-                            <b>Card number <Styled.Required>*</Styled.Required></b>
-                            <p><Styled.Input type='text' value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} /></p>
+                            <b>Card number <PageStyles.Required>*</PageStyles.Required></b>
+                            <p><PageStyles.Input type='text' value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} /></p>
                         </div>
                         <div>
-                            <b>Cardholder's name <Styled.Required>*</Styled.Required></b>
-                            <p><Styled.Input type='email' value={cardHolder} onChange={(e) => setCardHolder(e.target.value)} /></p>
+                            <b>Cardholder's name <PageStyles.Required>*</PageStyles.Required></b>
+                            <p><PageStyles.Input type='email' value={cardHolder} onChange={(e) => setCardHolder(e.target.value)} /></p>
                         </div>
-                    </Styled.InfoColumn>
-                    <Styled.InfoColumn>
+                    </PageStyles.InfoColumn>
+                    <PageStyles.InfoColumn>
                         <div>
                             <b>Expires</b>
-                            <p><Styled.Input type='text' value={cardExpires} onChange={(e) => setCardExpires(e.target.value)} /></p>
+                            <p><PageStyles.Input type='text' value={cardExpires} onChange={(e) => setCardExpires(e.target.value)} /></p>
                         </div>
                         <div>
                             <b>Cvv</b>
-                            <p><Styled.Input type='text' value={cardCvv} onChange={(e) => setCardCvv(e.target.value)} /></p>
+                            <p><PageStyles.Input type='text' value={cardCvv} onChange={(e) => setCardCvv(e.target.value)} /></p>
                         </div>
-                    </Styled.InfoColumn>
-                </Styled.Info>
+                    </PageStyles.InfoColumn>
+                </PageStyles.Info>
                 : null
             }
 
-            <Styled.ButtonContainer>
+            <PageStyles.ButtonContainer>
                 {isCreatingCard ?
                     <>
-                        <Styled.Button onClick={handleSaveCard}>Save</Styled.Button>
-                        <Styled.Button onClick={handleSaveCard}>Cancel</Styled.Button>
+                        <PageStyles.Button onClick={handleSaveCard}>Save</PageStyles.Button>
+                        <PageStyles.Button onClick={handleSaveCard}>Cancel</PageStyles.Button>
                     </>
                     :
                     <>
-                        <Styled.Button onClick={handleAddCard}>Add</Styled.Button>
-                        <Styled.Button>Remove</Styled.Button>
+                        <PageStyles.Button onClick={handleAddCard}>Add</PageStyles.Button>
+                        <PageStyles.Button>Remove</PageStyles.Button>
                     </>
                 }
-            </Styled.ButtonContainer>
-        </Styled.Container>
+            </PageStyles.ButtonContainer>
+        </PageStyles.Container>
     )
 }
